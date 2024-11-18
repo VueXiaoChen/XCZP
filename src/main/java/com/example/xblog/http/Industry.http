@@ -2,3 +2,17 @@
 GET http://localhost:8080/industry/list
 
 ###
+POST http://localhost:8080/industry/save
+Content-Type: application/json
+
+{
+
+  "name": "5645646",
+  "content": 444444444444
+}
+
+###
+###
+GET http://localhost:8080/industry/delete/22
+
+###

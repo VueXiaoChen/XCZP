@@ -1,10 +1,11 @@
 package com.example.xblog.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
+
+
 import com.example.xblog.domain.Industry;
 import com.example.xblog.domain.IndustryExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface IndustryMapper {

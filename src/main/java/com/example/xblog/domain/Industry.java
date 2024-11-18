@@ -1,11 +1,17 @@
 package com.example.xblog.domain;
 
+import java.util.Date;
+
 public class Industry {
     private Integer id;
 
     private String name;
 
     private String content;
+
+    private Date updatetime;
+
+    private Date createtime;
 
     public Integer getId() {
         return id;
@@ -21,6 +27,22 @@ public class Industry {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
     public String getContent() {
@@ -39,6 +61,8 @@ public class Industry {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
+        sb.append(", updatetime=").append(updatetime);
+        sb.append(", createtime=").append(createtime);
         sb.append(", content=").append(content);
         sb.append("]");
         return sb.toString();

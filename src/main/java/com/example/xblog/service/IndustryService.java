@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -45,4 +46,26 @@ public class IndustryService {
         pageResp.setList(data);
         return pageResp;
     }
+
+    //增加修改数据
+    public void save(IndustryReq industryReq) {
+        Industry industry = CopyUtil.copy(industryReq, Industry.class);
+        //增加数据
+        if (ObjectUtils.isEmpty(industryReq.getId())) {
+            industry.setCreatetime(new Date());
+            industry.setUpdatetime(new Date());
+            industryMapper.insertSelective(industry);
+        } else {
+            //更新数据
+            industry.setUpdatetime(new Date());
+            industryMapper.updateByPrimaryKeySelective(industry);
+        }
+    }
+
+    //删除数据
+    public void delete(Integer id) {
+        //删除数据
+        industryMapper.deleteByPrimaryKey(id);
+    }
+
 }
