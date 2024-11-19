@@ -9,6 +9,7 @@ import com.example.xblog.resp.EmployResp;
 import com.example.xblog.resp.IndustryResp;
 import com.example.xblog.service.EmployService;
 import com.example.xblog.service.IndustryService;
+import com.example.xblog.util.Mylog;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
@@ -22,6 +23,7 @@ import java.util.List;
 public class EmployController {
     @Resource
     private EmployService employService;
+    @Mylog(value="查询企业信息")
     @GetMapping("/list")
     //@Valid  开启参数检验
     public CommonResp list(@Validated EmployReq employReq) {
@@ -35,7 +37,7 @@ public class EmployController {
         resp.setData(data);
         return resp;
     }
-
+    @Mylog(value="增加或修改企业信息")
     @PostMapping("/save")
     //@RequestBody  定义传过来的参数是实体类
     public CommonResp save(@Validated @RequestBody EmploySaveReq employSaveReq) {
@@ -54,6 +56,7 @@ public class EmployController {
     }
 
     //单个删除
+    @Mylog(value="删除企业信息")
     @DeleteMapping ("/delete/{id}")
     //@PathVariable与{blogId}是绑定的
     public CommonResp delete(@PathVariable Integer id) {
@@ -68,6 +71,7 @@ public class EmployController {
     }
 
     //批量删除
+    @Mylog(value="多项删除企业信息")
     @DeleteMapping("/delete/batch")
     public CommonResp deleteById(@RequestParam(value = "ids") List<Integer> ids) {
         //返回信息里面定义返回的类型

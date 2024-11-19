@@ -5,6 +5,7 @@ import com.example.xblog.req.PageResp;
 import com.example.xblog.resp.CommonResp;
 import com.example.xblog.resp.IndustryResp;
 import com.example.xblog.service.IndustryService;
+import com.example.xblog.util.Mylog;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import javax.annotation.Resource;
 public class IndustryController {
     @Resource
     private IndustryService industryService;
+    @Mylog(value="查询企业类型信息")
     @GetMapping("/list")
     //@Valid  开启参数检验
     public CommonResp list(@Validated IndustryReq industryReq) {
@@ -28,7 +30,7 @@ public class IndustryController {
         resp.setData(data);
         return resp;
     }
-
+    @Mylog(value="增加或修改企业类型信息")
     @PostMapping("/save")
     //@RequestBody  定义传过来的参数是实体类
     public CommonResp save(@Validated @RequestBody IndustryReq industryReq) {
@@ -49,6 +51,7 @@ public class IndustryController {
     }
 
     //单个删除
+    @Mylog(value="删除企业类型信息")
     @GetMapping("/delete/{id}")
     //@PathVariable与{blogId}是绑定的
     public CommonResp delete(@PathVariable Integer id) {
