@@ -47,8 +47,9 @@
         <table tableName="t_redis" domainObjectName="RedisTest"/>
         <table tableName="t_users" domainObjectName="User"/>
         <table tableName="t_log" domainObjectName="OperateLog"/>
-        <table tableName="t_video" domainObjectName="VideoAddress"/>-->
-        <table tableName="industry" domainObjectName="Industry"/>
+        <table tableName="t_video" domainObjectName="VideoAddress"/>
+        <table tableName="industry" domainObjectName="Industry"/>-->
+        <table tableName="employ" domainObjectName="Employ"/>
         <!--<table tableName="t_exam_paper_question_customer_answer" domainObjectName="ExaPaperQuestionCustomerAnswer"/>-->
 
 

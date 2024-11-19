@@ -1,0 +1,24 @@
+###
+GET http://localhost:8080/employ/list
+###
+POST http://localhost:8080/employ/save
+Content-Type: application/json
+
+{
+  "username": "11211",
+  "password": "2",
+  "name": "Xu Rui3",
+  "avatar": "4",
+  "role": "5",
+  "city": "6",
+  "address": "777",
+  "industryId": 888,
+  "scale": "4",
+  "stage": "3"
+}
+
+###
+###
+GET http://localhost:8080/industry/delete/22
+
+###
