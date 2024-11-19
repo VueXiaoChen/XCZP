@@ -29,4 +29,6 @@ public interface EmployMapper {
     int updateByPrimaryKeySelective(Employ row);
 
     int updateByPrimaryKey(Employ row);
+
+    int deleteByIds(List<Integer> ids);
 }

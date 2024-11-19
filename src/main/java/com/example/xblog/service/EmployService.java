@@ -90,4 +90,15 @@ public class EmployService {
             employMapper.updateByPrimaryKeySelective(employ);
         }
     }
+
+    //删除数据
+    public void delete(Integer id) {
+        //删除数据
+        employMapper.deleteByPrimaryKey(id);
+    }
+
+    //批量删除
+    public void deleteBatch(List<Integer> ids) {
+        employMapper.deleteByIds(ids);
+    }
 }

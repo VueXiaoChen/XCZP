@@ -321,4 +321,12 @@
       `status` = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!-- 批量删除 -->
+  <delete id="deleteByIds">
+    delete from employ
+    where id in
+    <foreach collection="list" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
 </mapper>
