@@ -3,6 +3,7 @@ package com.example.xblog.exception;
 public enum BusinessExceptionCode {
 
     USER_LOGIN_NAME_EXIST("登录名已存在"),
+    USER_EMPLOY_NAME_EXIST("企业名已存在"),
     LOGIN_USER_ERROR("用户名不存在或密码错误"),
     VOTE_FOCUS("您已关注过"),
     VOTE_PRAISE("您已点赞过"),

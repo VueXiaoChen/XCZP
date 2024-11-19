@@ -5,8 +5,7 @@ POST http://localhost:8080/employ/save
 Content-Type: application/json
 
 {
-  "id": 28,
-  "username": "1111111111111111111",
+  "username": "1",
   "password": "2",
   "name": "Xu Rui3",
   "avatar": "4",

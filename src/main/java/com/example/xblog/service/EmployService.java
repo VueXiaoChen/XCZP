@@ -4,6 +4,8 @@ import com.example.xblog.domain.Employ;
 import com.example.xblog.domain.EmployExample;
 import com.example.xblog.domain.Industry;
 import com.example.xblog.domain.IndustryExample;
+import com.example.xblog.exception.BusinessException;
+import com.example.xblog.exception.BusinessExceptionCode;
 import com.example.xblog.mapper.EmployMapper;
 import com.example.xblog.mapper.IndustryMapper;
 import com.example.xblog.req.EmployReq;
@@ -18,6 +20,7 @@ import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
@@ -30,6 +33,23 @@ public class EmployService {
 
     @Resource
     public EmployMapper employMapper;
+    //判断名称重复的方法
+    public Employ selectByName(String name){
+        //固定写法
+        EmployExample example = new EmployExample();
+        //固定写法
+        EmployExample.Criteria criteria = example.createCriteria();
+        //查询用户名
+        criteria.andUsernameEqualTo(name);
+        //返回查询的实体类
+        List<Employ> employList = employMapper.selectByExample(example);
+        //判断是否有数据
+        if(CollectionUtils.isEmpty(employList)){
+            return null;
+        }else{
+            return employList.get(0);
+        }
+    }
     //查询数据
     public PageResp<EmployResp> list(EmployReq employReq) {
         //固定写法
@@ -82,15 +102,22 @@ public class EmployService {
     //增加数据
     public void save(EmploySaveReq employSaveReq) {
         Employ employ = CopyUtil.copy(employSaveReq, Employ.class);
-        //增加数据
-        if (ObjectUtils.isEmpty(employSaveReq.getId())) {
-            employMapper.insertSelective(employ);
-        } else {
-            //更新数据
-            employMapper.updateByPrimaryKeySelective(employ);
+        //判断企业名是否存在
+        Employ employname = selectByName(employSaveReq.getUsername());
+        if(!ObjectUtils.isEmpty(employname)){
+            //判断企业名是否存在
+            throw new BusinessException(BusinessExceptionCode.USER_EMPLOY_NAME_EXIST);
+        }else{
+            //增加数据
+            if (ObjectUtils.isEmpty(employSaveReq.getId())) {
+                employMapper.insertSelective(employ);
+            } else {
+                //更新数据
+                employMapper.updateByPrimaryKeySelective(employ);
+            }
         }
-    }
 
+    }
     //删除数据
     public void delete(Integer id) {
         //删除数据
