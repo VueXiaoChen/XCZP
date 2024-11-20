@@ -1,0 +1,52 @@
+###
+GET http://localhost:8080/user/list?username=Ma&name=Sa&role=3s
+###
+POST http://localhost:8080/user/save
+Content-Type: application/json
+
+{
+  "id": 22,
+  "username": "2222222222",
+  "password": "123",
+  "name": "Sano Mai",
+  "avatar": "XUhkRPNegs",
+  "role": "3sd6Q1cLIf",
+  "phone": "10-1943-3339",
+  "email": "sano7@outlook.com",
+  "updatetime": "2004-01-30 05:29:31",
+  "createtime": "2013-08-08 05:27:59"
+}
+
+###
+###
+DELETE http://localhost:8080/user/delete/21
+
+###
+
+
+
+DELETE http://localhost:8080/user/delete/batch?ids=24,25,26
+
+###
+
+###
+POST http://localhost:8080/user/loading
+Content-Type: application/json
+
+{
+  "username": "111",
+  "password": "222"
+}
+
+###
+
+###
+POST http://localhost:8080/user/password
+Content-Type: application/json
+
+{
+  "username": "111",
+  "password": "23333"
+}
+
+###
