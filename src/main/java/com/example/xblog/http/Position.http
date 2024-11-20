@@ -1,0 +1,33 @@
+###
+GET http://localhost:8080/position/list?createtime=2013-05-09
+###
+POST http://localhost:8080/position/save
+Content-Type: application/json
+
+{
+  "id": 16,
+  "name": "11",
+  "employId": 176,
+  "industryId": 386,
+  "type": "UHeCbKxFMm",
+  "experience": "Cbtoo0TPdY",
+  "salary": "PKJgMbb7Sc",
+  "education": "XtPivTFlet",
+  "tags": "Nij9PvxHaj",
+  "status": "mEsLoSp47o",
+  "createtime": "2017-05-06",
+  "updatetime": "2008-09-06",
+  "content": "sdfsdfsdfsdfdsf"
+}
+
+###
+###
+DELETE http://localhost:8080/position/delete/21
+
+###
+
+
+
+DELETE http://localhost:8080/position/delete/batch?ids=24,25,26
+
+###

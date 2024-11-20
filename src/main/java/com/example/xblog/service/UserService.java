@@ -21,6 +21,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -107,6 +108,7 @@ public class UserService {
                 userMapper.insertSelective(user);
             } else {
                 //更新数据
+                user.setUpdatetime(new Date());
                 userMapper.updateByPrimaryKeySelective(user);
             }
         }

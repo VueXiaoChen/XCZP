@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.xblog.mapper.PositionMapper">
+  <resultMap id="BaseResultMap" type="com.example.xblog.domain.Position">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="employ_id" jdbcType="INTEGER" property="employId" />
+    <result column="industry_id" jdbcType="INTEGER" property="industryId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="experience" jdbcType="VARCHAR" property="experience" />
+    <result column="salary" jdbcType="VARCHAR" property="salary" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.xblog.domain.Position">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, `name`, employ_id, industry_id, `type`, experience, salary, education, tags, 
+    `status`, createtime, updatetime
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.xblog.domain.PositionExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from position
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.example.xblog.domain.PositionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from position
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from position
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from position
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.xblog.domain.PositionExample">
+    delete from position
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.xblog.domain.Position">
+    insert into position (id, `name`, employ_id, 
+      industry_id, `type`, experience, 
+      salary, education, tags, 
+      `status`, createtime, updatetime, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{employId,jdbcType=INTEGER}, 
+      #{industryId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{experience,jdbcType=VARCHAR}, 
+      #{salary,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xblog.domain.Position" useGeneratedKeys="true"
+          keyColumn="id" keyProperty="id">
+    insert into position
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="employId != null">
+        employ_id,
+      </if>
+      <if test="industryId != null">
+        industry_id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="experience != null">
+        experience,
+      </if>
+      <if test="salary != null">
+        salary,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="tags != null">
+        tags,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="employId != null">
+        #{employId,jdbcType=INTEGER},
+      </if>
+      <if test="industryId != null">
+        #{industryId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xblog.domain.PositionExample" resultType="java.lang.Long">
+    select count(*) from position
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update position
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=INTEGER},
+      </if>
+      <if test="row.name != null">
+        `name` = #{row.name,jdbcType=VARCHAR},
+      </if>
+      <if test="row.employId != null">
+        employ_id = #{row.employId,jdbcType=INTEGER},
+      </if>
+      <if test="row.industryId != null">
+        industry_id = #{row.industryId,jdbcType=INTEGER},
+      </if>
+      <if test="row.type != null">
+        `type` = #{row.type,jdbcType=VARCHAR},
+      </if>
+      <if test="row.experience != null">
+        experience = #{row.experience,jdbcType=VARCHAR},
+      </if>
+      <if test="row.salary != null">
+        salary = #{row.salary,jdbcType=VARCHAR},
+      </if>
+      <if test="row.education != null">
+        education = #{row.education,jdbcType=VARCHAR},
+      </if>
+      <if test="row.tags != null">
+        tags = #{row.tags,jdbcType=VARCHAR},
+      </if>
+      <if test="row.status != null">
+        `status` = #{row.status,jdbcType=VARCHAR},
+      </if>
+      <if test="row.createtime != null">
+        createtime = #{row.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.updatetime != null">
+        updatetime = #{row.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.content != null">
+        content = #{row.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update position
+    set id = #{row.id,jdbcType=INTEGER},
+      `name` = #{row.name,jdbcType=VARCHAR},
+      employ_id = #{row.employId,jdbcType=INTEGER},
+      industry_id = #{row.industryId,jdbcType=INTEGER},
+      `type` = #{row.type,jdbcType=VARCHAR},
+      experience = #{row.experience,jdbcType=VARCHAR},
+      salary = #{row.salary,jdbcType=VARCHAR},
+      education = #{row.education,jdbcType=VARCHAR},
+      tags = #{row.tags,jdbcType=VARCHAR},
+      `status` = #{row.status,jdbcType=VARCHAR},
+      createtime = #{row.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{row.updatetime,jdbcType=TIMESTAMP},
+      content = #{row.content,jdbcType=LONGVARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update position
+    set id = #{row.id,jdbcType=INTEGER},
+      `name` = #{row.name,jdbcType=VARCHAR},
+      employ_id = #{row.employId,jdbcType=INTEGER},
+      industry_id = #{row.industryId,jdbcType=INTEGER},
+      `type` = #{row.type,jdbcType=VARCHAR},
+      experience = #{row.experience,jdbcType=VARCHAR},
+      salary = #{row.salary,jdbcType=VARCHAR},
+      education = #{row.education,jdbcType=VARCHAR},
+      tags = #{row.tags,jdbcType=VARCHAR},
+      `status` = #{row.status,jdbcType=VARCHAR},
+      createtime = #{row.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{row.updatetime,jdbcType=TIMESTAMP}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xblog.domain.Position">
+    update position
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="employId != null">
+        employ_id = #{employId,jdbcType=INTEGER},
+      </if>
+      <if test="industryId != null">
+        industry_id = #{industryId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        experience = #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        salary = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.xblog.domain.Position">
+    update position
+    set `name` = #{name,jdbcType=VARCHAR},
+      employ_id = #{employId,jdbcType=INTEGER},
+      industry_id = #{industryId,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xblog.domain.Position">
+    update position
+    set `name` = #{name,jdbcType=VARCHAR},
+      employ_id = #{employId,jdbcType=INTEGER},
+      industry_id = #{industryId,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
