@@ -1,5 +1,5 @@
 ###
-GET http://localhost:8080/user/list?username=Ma&name=Sa&role=3s
+GET http://localhost:8080/user/list?createtime=2017-04-26 19:00
 ###
 POST http://localhost:8080/user/save
 Content-Type: application/json

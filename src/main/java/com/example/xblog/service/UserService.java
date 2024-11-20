@@ -70,6 +70,13 @@ public class UserService {
         if (!ObjectUtils.isEmpty(userReq.getEmail())) {
             criteria.andEmailLike("%" + userReq.getEmail() + "%");
         }
+        if (!ObjectUtils.isEmpty(userReq.getCreatetime())) {
+            criteria.andCreatetimeGreaterThanOrEqualTo(userReq.getCreatetime());
+        }
+        if (!ObjectUtils.isEmpty(userReq.getUpdatetime())) {
+            criteria.andUpdatetimeGreaterThanOrEqualTo(userReq.getUpdatetime());
+        }
+
         //分页(获取从页面传来的数据)
         PageHelper.startPage(userReq.getPage(), userReq.getSize());
         //类接收返回的数据
@@ -128,6 +135,7 @@ public class UserService {
             //
         }
     }
+
     //修改密码
     public void updatepassword(UserLoadingReq userLoadingReq) {
         //通过用户名查询数据
