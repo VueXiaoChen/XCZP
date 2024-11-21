@@ -1,0 +1,49 @@
+###
+GET http://localhost:8080/collect/list?studentId=735&positionId=1661
+###
+POST http://localhost:8080/collect/save
+Content-Type: application/json
+
+{
+  "studentId": 735,
+  "positionId": 1661
+}
+
+###
+###
+POST http://localhost:8080/collect/delete/
+Content-Type: application/json
+
+{
+  "studentId": 735,
+  "positionId": 1661
+}
+###
+
+
+
+DELETE http://localhost:8080/collect/delete/batch?ids=24,25,26
+
+###
+
+###
+POST http://localhost:8080/collect/loading
+Content-Type: application/json
+
+{
+  "username": "111",
+  "password": "23333"
+}
+
+###
+
+###
+POST http://localhost:8080/user/password
+Content-Type: application/json
+
+{
+  "username": "111",
+  "password": "23333"
+}
+
+###

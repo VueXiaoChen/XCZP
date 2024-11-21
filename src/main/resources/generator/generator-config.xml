@@ -51,8 +51,10 @@
         <table tableName="industry" domainObjectName="Industry"/>
         <table tableName="employ" domainObjectName="Employ"/>
         <table tableName="position" domainObjectName="Position"/>
-        <table tableName="t_user" domainObjectName="User"/>-->
-        <table tableName="t_log" domainObjectName="OperateLog"/>
+        <table tableName="t_user" domainObjectName="User"/>
+        <table tableName="t_log" domainObjectName="OperateLog"/>-->
+        <table tableName="collect" domainObjectName="Collect"/>
+
 
 
         <!--<table tableName="t_exam_paper_question_customer_answer" domainObjectName="ExaPaperQuestionCustomerAnswer"/>-->
