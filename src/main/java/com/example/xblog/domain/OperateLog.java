@@ -21,6 +21,8 @@ public class OperateLog {
 
     private Date logOperationtime;
 
+    private String logOptionuser;
+
     private String logParams;
 
     private String logResult;
@@ -97,6 +99,14 @@ public class OperateLog {
         this.logOperationtime = logOperationtime;
     }
 
+    public String getLogOptionuser() {
+        return logOptionuser;
+    }
+
+    public void setLogOptionuser(String logOptionuser) {
+        this.logOptionuser = logOptionuser;
+    }
+
     public String getLogParams() {
         return logParams;
     }
@@ -128,6 +138,7 @@ public class OperateLog {
         sb.append(", logResponsetime=").append(logResponsetime);
         sb.append(", logOperation=").append(logOperation);
         sb.append(", logOperationtime=").append(logOperationtime);
+        sb.append(", logOptionuser=").append(logOptionuser);
         sb.append(", logParams=").append(logParams);
         sb.append(", logResult=").append(logResult);
         sb.append("]");

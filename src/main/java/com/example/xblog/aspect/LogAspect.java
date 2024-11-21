@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.PropertyPreFilters;
 import com.example.xblog.domain.OperateLog;
 import com.example.xblog.mapper.OperateLogMapper;
+import com.example.xblog.service.GlobalConfigService;
 import com.example.xblog.util.Mylog;
 import com.example.xblog.util.RequestContext;
 import com.example.xblog.util.SnowFlake;
@@ -46,6 +47,9 @@ public class LogAspect {
     OperateLog operateLog = new OperateLog();
     @Resource
     private SnowFlake snowFlake;
+
+    @Resource
+    private GlobalConfigService globalConfigService;
 
     @Resource
     private OperateLogMapper operateLogMapper;
@@ -123,6 +127,8 @@ public class LogAspect {
         //耗时
         operateLog.setLogResponsetime(String.valueOf(System.currentTimeMillis() - startTime));
         operateLog.setLogOperationtime(new Date());
+        //储存全局变量的用户名
+        operateLog.setLogOptionuser(globalConfigService.GetName());
         operateLogMapper.insertSelective(operateLog);
         return result;
     }

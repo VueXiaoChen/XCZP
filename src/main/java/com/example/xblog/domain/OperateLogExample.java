@@ -714,6 +714,76 @@ public class OperateLogExample {
             addCriterion("log_operationTime not between", value1, value2, "logOperationtime");
             return (Criteria) this;
         }
+
+        public Criteria andLogOptionuserIsNull() {
+            addCriterion("log_optionUser is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserIsNotNull() {
+            addCriterion("log_optionUser is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserEqualTo(String value) {
+            addCriterion("log_optionUser =", value, "logOptionuser");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserNotEqualTo(String value) {
+            addCriterion("log_optionUser <>", value, "logOptionuser");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserGreaterThan(String value) {
+            addCriterion("log_optionUser >", value, "logOptionuser");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserGreaterThanOrEqualTo(String value) {
+            addCriterion("log_optionUser >=", value, "logOptionuser");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserLessThan(String value) {
+            addCriterion("log_optionUser <", value, "logOptionuser");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserLessThanOrEqualTo(String value) {
+            addCriterion("log_optionUser <=", value, "logOptionuser");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserLike(String value) {
+            addCriterion("log_optionUser like", value, "logOptionuser");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserNotLike(String value) {
+            addCriterion("log_optionUser not like", value, "logOptionuser");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserIn(List<String> values) {
+            addCriterion("log_optionUser in", values, "logOptionuser");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserNotIn(List<String> values) {
+            addCriterion("log_optionUser not in", values, "logOptionuser");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserBetween(String value1, String value2) {
+            addCriterion("log_optionUser between", value1, value2, "logOptionuser");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogOptionuserNotBetween(String value1, String value2) {
+            addCriterion("log_optionUser not between", value1, value2, "logOptionuser");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

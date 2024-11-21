@@ -30,6 +30,9 @@ public class UserService {
 
     @Resource
     public UserMapper userMapper;
+
+    @Resource
+    public GlobalConfigService globalConfigService;
     //判断名称重复的方法
     public User selectByName(String name){
         //固定写法
@@ -126,6 +129,8 @@ public class UserService {
                 //登录成功
                 UserLoadingResp userLoadingResp = CopyUtil.copy(user,UserLoadingResp.class);
                 userLoadingResp.setUserid(Long.valueOf(user.getId()));
+                //全局变量储存用户的姓名
+                globalConfigService.SaveName(user.getName());
                 LOG.info("登录成功");
                 return userLoadingResp;
             }else{

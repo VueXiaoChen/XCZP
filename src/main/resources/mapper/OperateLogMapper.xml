@@ -11,6 +11,7 @@
     <result column="log_responseTime" jdbcType="VARCHAR" property="logResponsetime" />
     <result column="log_operation" jdbcType="VARCHAR" property="logOperation" />
     <result column="log_operationTime" jdbcType="TIMESTAMP" property="logOperationtime" />
+    <result column="log_optionUser" jdbcType="VARCHAR" property="logOptionuser" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.xblog.domain.OperateLog">
     <result column="log_params" jdbcType="LONGVARCHAR" property="logParams" />
@@ -76,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List">
     log_id, log_url, log_method, log_ip, log_startDate, log_endDate, log_responseTime, 
-    log_operation, log_operationTime
+    log_operation, log_operationTime, log_optionUser
   </sql>
   <sql id="Blob_Column_List">
     log_params, log_result
@@ -121,11 +122,13 @@
     insert into t_log (log_id, log_url, log_method, 
       log_ip, log_startDate, log_endDate, 
       log_responseTime, log_operation, log_operationTime, 
-      log_params, log_result)
+      log_optionUser, log_params, log_result
+      )
     values (#{logId,jdbcType=BIGINT}, #{logUrl,jdbcType=VARCHAR}, #{logMethod,jdbcType=VARCHAR}, 
       #{logIp,jdbcType=VARCHAR}, #{logStartdate,jdbcType=VARCHAR}, #{logEnddate,jdbcType=VARCHAR}, 
       #{logResponsetime,jdbcType=VARCHAR}, #{logOperation,jdbcType=VARCHAR}, #{logOperationtime,jdbcType=TIMESTAMP}, 
-      #{logParams,jdbcType=LONGVARCHAR}, #{logResult,jdbcType=LONGVARCHAR})
+      #{logOptionuser,jdbcType=VARCHAR}, #{logParams,jdbcType=LONGVARCHAR}, #{logResult,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.xblog.domain.OperateLog">
     insert into t_log
@@ -156,6 +159,9 @@
       </if>
       <if test="logOperationtime != null">
         log_operationTime,
+      </if>
+      <if test="logOptionuser != null">
+        log_optionUser,
       </if>
       <if test="logParams != null">
         log_params,
@@ -191,6 +197,9 @@
       </if>
       <if test="logOperationtime != null">
         #{logOperationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logOptionuser != null">
+        #{logOptionuser,jdbcType=VARCHAR},
       </if>
       <if test="logParams != null">
         #{logParams,jdbcType=LONGVARCHAR},
@@ -236,6 +245,9 @@
       <if test="row.logOperationtime != null">
         log_operationTime = #{row.logOperationtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="row.logOptionuser != null">
+        log_optionUser = #{row.logOptionuser,jdbcType=VARCHAR},
+      </if>
       <if test="row.logParams != null">
         log_params = #{row.logParams,jdbcType=LONGVARCHAR},
       </if>
@@ -258,6 +270,7 @@
       log_responseTime = #{row.logResponsetime,jdbcType=VARCHAR},
       log_operation = #{row.logOperation,jdbcType=VARCHAR},
       log_operationTime = #{row.logOperationtime,jdbcType=TIMESTAMP},
+      log_optionUser = #{row.logOptionuser,jdbcType=VARCHAR},
       log_params = #{row.logParams,jdbcType=LONGVARCHAR},
       log_result = #{row.logResult,jdbcType=LONGVARCHAR}
     <if test="example != null">
@@ -274,7 +287,8 @@
       log_endDate = #{row.logEnddate,jdbcType=VARCHAR},
       log_responseTime = #{row.logResponsetime,jdbcType=VARCHAR},
       log_operation = #{row.logOperation,jdbcType=VARCHAR},
-      log_operationTime = #{row.logOperationtime,jdbcType=TIMESTAMP}
+      log_operationTime = #{row.logOperationtime,jdbcType=TIMESTAMP},
+      log_optionUser = #{row.logOptionuser,jdbcType=VARCHAR}
     <if test="example != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
