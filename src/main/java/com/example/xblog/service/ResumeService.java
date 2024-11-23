@@ -18,6 +18,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -54,9 +55,12 @@ public class ResumeService {
     public void save(ResumeReq resumeReq) {
         Resume resume = CopyUtil.copy(resumeReq, Resume.class);
         if (ObjectUtils.isEmpty(resumeReq.getId())) {
+            resume.setCreatetime(new Date());
+            resume.setUpdatetime(new Date());
             resumeMapper.insertSelective(resume);
         } else {
             //更新数据
+            resume.setUpdatetime(new Date());
             resumeMapper.updateByPrimaryKeySelective(resume);
         }
 
