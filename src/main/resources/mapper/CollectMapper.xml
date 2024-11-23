@@ -8,6 +8,20 @@
     <result column="collecttime" jdbcType="TIMESTAMP" property="collecttime" />
     <result column="collectdistime" jdbcType="TIMESTAMP" property="collectdistime" />
   </resultMap>
+  <resultMap id="CollResultMap" type="com.example.xblog.resp.CollectResp">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="student_id" jdbcType="INTEGER" property="studentId" />
+    <result column="position_id" jdbcType="INTEGER" property="positionId" />
+    <result column="posttionnames" jdbcType="VARCHAR" property="positionName" />
+    <result column="salary" jdbcType="VARCHAR" property="positionSalary" />
+    <result column="tags" jdbcType="ARRAY" property="tagList" />
+    <result column="avatar" jdbcType="VARCHAR" property="employAvatar" />
+    <result column="employname" jdbcType="VARCHAR" property="employName" />
+    <result column="industryname" jdbcType="VARCHAR" property="industryName" />
+    <result column="stage" jdbcType="VARCHAR" property="employStage" />
+    <result column="collecttime" jdbcType="TIMESTAMP" property="collecttime" />
+
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -209,4 +223,13 @@
       collectdistime = #{collectdistime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="findmyselfcollcet" parameterType="java.lang.Integer" resultMap="CollResultMap">
+    SELECT c.id,c.collecttime,c.student_id,c.position_id,p.`name` as posttionnames,p.salary,p.tags,e.avatar,e.`name` as employname,e.stage,i.`name` as industryname
+    FROM collect c
+        INNER JOIN position p on c.position_id=p.id
+        INNER JOIN employ e on p.employ_id = e.id
+        INNER JOIN industry i on e.industry_id=i.id
+    where c.student_id = #{studentId,jdbcType=INTEGER}
+  </select>
 </mapper>

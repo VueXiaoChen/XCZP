@@ -29,4 +29,6 @@ public interface CollectMapper {
     int updateByPrimaryKeySelective(Collect row);
 
     int updateByPrimaryKey(Collect row);
+
+    List<Collect> findmyselfcollcet(Integer id);
 }

@@ -60,4 +60,17 @@ public class CollectController {
         resp.setData("");
         return resp;
     }
+
+    @PostMapping ("/selfcollect")
+    //@PathVariable与{blogId}是绑定的
+    public CommonResp findmyselfcollect(@Validated @RequestBody CollectReq collectReq) {
+        //返回信息里面定义返回的类型
+        CommonResp resp = new CommonResp<>();
+        //删除数据
+        PageResp<CollectResp> data = collectService.findmyselfcollect(collectReq);
+        //将信息添加到返回信息里
+        resp.setMessage("查询成功");
+        resp.setData(data);
+        return resp;
+    }
 }

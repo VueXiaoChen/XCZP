@@ -15,7 +15,7 @@ public class CollectResp {
 
     private String positionSalary;
 
-    private List<String> tagList;
+    private String tagList;
 
     private String employAvatar;
 
@@ -27,9 +27,6 @@ public class CollectResp {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date collecttime;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date collectdistime;
 
     public Integer getId() {
         return id;
@@ -71,11 +68,11 @@ public class CollectResp {
         this.positionSalary = positionSalary;
     }
 
-    public List<String> getTagList() {
+    public String getTagList() {
         return tagList;
     }
 
-    public void setTagList(List<String> tagList) {
+    public void setTagList(String tagList) {
         this.tagList = tagList;
     }
 
@@ -119,14 +116,6 @@ public class CollectResp {
         this.collecttime = collecttime;
     }
 
-    public Date getCollectdistime() {
-        return collectdistime;
-    }
-
-    public void setCollectdistime(Date collectdistime) {
-        this.collectdistime = collectdistime;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -144,7 +133,6 @@ public class CollectResp {
         sb.append(", industryName=").append(positionId);
         sb.append(", employStage=").append(positionId);
         sb.append(", collecttime=").append(collecttime);
-        sb.append(", collectdistime=").append(collectdistime);
         sb.append("]");
         return sb.toString();
     }

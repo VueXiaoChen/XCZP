@@ -85,5 +85,22 @@ public class CollectService {
             collectMapper.deleteByPrimaryKey(collectlist.getList().get(0).getId());
         }
     }
+    public PageResp<CollectResp> findmyselfcollect(CollectReq collectReq) {
+        //分页(获取从页面传来的数据)
+        PageHelper.startPage(collectReq.getPage(), collectReq.getSize());
+        //类接收返回的数据
+        List<Collect> collectList = collectMapper.findmyselfcollcet(collectReq.getStudentId());
+        //将返回的数据进行封装,某些信息是不需要返回的
+        List<CollectResp> data = CopyUtil.copyList(collectList, CollectResp.class);
+        //定义分页获取总数
+        PageInfo<Collect> pageInfo = new PageInfo<>(collectList);
+        //定义分页
+        PageResp<CollectResp> pageResp = new PageResp<>();
+        //将分页的数据进行总和
+        pageResp.setTotal(pageInfo.getTotal());
+        //将分页的数据加入类
+        pageResp.setList(data);
+        return pageResp;
+    }
 
 }
