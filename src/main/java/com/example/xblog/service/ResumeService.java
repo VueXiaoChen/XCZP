@@ -35,6 +35,26 @@ public class ResumeService {
         ResumeExample example = new ResumeExample();
         //固定写法
         ResumeExample.Criteria criteria = example.createCriteria();
+        //性别查询
+        if (!ObjectUtils.isEmpty(resumeReq.getSex())) {
+            criteria.andSexLike("%" + resumeReq.getSex() + "%");
+        }
+        //期望薪资
+        if (!ObjectUtils.isEmpty(resumeReq.getSalary())) {
+            criteria.andSalaryLike("%" + resumeReq.getSalary() + "%");
+        }
+        //学历
+        if (!ObjectUtils.isEmpty(resumeReq.getEducation())) {
+            criteria.andEducationLike("%" + resumeReq.getEducation() + "%");
+        }
+        //工作年限
+        if (!ObjectUtils.isEmpty(resumeReq.getExperience())) {
+            criteria.andExperienceLike("%" + resumeReq.getExperience() + "%");
+        }
+        //用户id
+        if (!ObjectUtils.isEmpty(resumeReq.getUserId())) {
+            criteria.andUserIdEqualTo(resumeReq.getUserId());
+        }
         //分页(获取从页面传来的数据)
         PageHelper.startPage(resumeReq.getPage(), resumeReq.getSize());
         //类接收返回的数据

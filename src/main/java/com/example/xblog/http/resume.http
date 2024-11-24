@@ -1,5 +1,5 @@
 ###
-GET http://localhost:8080/resume/list
+GET http://localhost:8080/resume/list?userId=3840
 ###
 POST http://localhost:8080/resume/save
 Content-Type: application/json

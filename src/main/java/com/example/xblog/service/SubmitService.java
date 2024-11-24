@@ -32,6 +32,30 @@ public class SubmitService {
         SubmitExample example = new SubmitExample();
         //固定写法
         SubmitExample.Criteria criteria = example.createCriteria();
+        //简历状态查询
+        if (!ObjectUtils.isEmpty(submitReq.getStatus())) {
+            criteria.andStatusEqualTo(submitReq.getStatus());
+        }
+        //通过企业ID查询
+        if (!ObjectUtils.isEmpty(submitReq.getEmployId())) {
+            criteria.andEmployIdEqualTo(submitReq.getEmployId());
+        }
+        //通过岗位查询
+        if (!ObjectUtils.isEmpty(submitReq.getPositionId())) {
+            criteria.andPositionIdEqualTo(submitReq.getPositionId());
+        }
+        //通过用户id查询
+        if (!ObjectUtils.isEmpty(submitReq.getUserId())) {
+            criteria.andUserIdEqualTo(submitReq.getUserId());
+        }
+        //通过简历ID查询
+        if (!ObjectUtils.isEmpty(submitReq.getResumeId())) {
+            criteria.andResumeIdEqualTo(submitReq.getResumeId());
+        }
+        //通过简历创建时间查询
+        if (!ObjectUtils.isEmpty(submitReq.getCreatetime())) {
+            criteria.andCreatetimeGreaterThanOrEqualTo(submitReq.getCreatetime());
+        }
         //分页(获取从页面传来的数据)
         PageHelper.startPage(submitReq.getPage(), submitReq.getSize());
         //类接收返回的数据

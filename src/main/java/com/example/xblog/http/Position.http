@@ -5,19 +5,18 @@ POST http://localhost:8080/position/save
 Content-Type: application/json
 
 {
-  "id": 16,
-  "name": "11",
-  "employId": 176,
-  "industryId": 386,
-  "type": "UHeCbKxFMm",
-  "experience": "Cbtoo0TPdY",
-  "salary": "PKJgMbb7Sc",
-  "education": "XtPivTFlet",
-  "tags": "Nij9PvxHaj",
-  "status": "mEsLoSp47o",
+  "name": "JAVA开发",
+  "employId": 1,
+  "industryId": 4,
+  "type": "求职类型",
+  "experience": "2-3年",
+  "salary": "2K-3K",
+  "education": "大专以上",
+  "tags": "java,C,PHP",
+  "status": "1",
   "createtime": "2017-05-06",
   "updatetime": "2008-09-06",
-  "content": "sdfsdfsdfsdfdsf"
+  "content": "职位状态"
 }
 
 ###
