@@ -67,7 +67,7 @@ public class WebSocketServer {
      * 收到消息
      */
     @OnMessage
-    public void onMessage(String message, Session session) throws IOException {
+    public void onMessage(String message, Session session) {
         LOG.info("收到消息：{}，内容：{}", token, message);
     }
 

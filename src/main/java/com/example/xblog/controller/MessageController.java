@@ -26,5 +26,9 @@ public class MessageController {
     public void send(@RequestBody WebMessageReq webMessageReq) {
         redisTemplate.convertAndSend(RedisCode.TOPIC_SEND,webMessageReq);
     }
+    @PostMapping("/collect")
+    public void collect(@RequestBody WebMessageReq webMessageReq) {
+        redisTemplate.convertAndSend(RedisCode.TOPIC_COLLECT,webMessageReq);
+    }
     //单个增加
 }

@@ -6,6 +6,7 @@ import com.example.xblog.domain.Employ;
 import com.example.xblog.domain.EmployExample;
 import com.example.xblog.exception.BusinessException;
 import com.example.xblog.exception.BusinessExceptionCode;
+import com.example.xblog.exception.RedisCode;
 import com.example.xblog.mapper.CollectMapper;
 import com.example.xblog.mapper.EmployMapper;
 import com.example.xblog.req.CollectReq;
@@ -15,10 +16,12 @@ import com.example.xblog.req.PageResp;
 import com.example.xblog.resp.CollectResp;
 import com.example.xblog.resp.EmployResp;
 import com.example.xblog.util.CopyUtil;
+import com.example.xblog.util.RedisUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
@@ -34,6 +37,13 @@ public class CollectService {
 
     @Resource
     public CollectMapper collectMapper;
+
+    @Resource
+    public RedisTemplate redisTemplate;
+
+    @Resource
+    public RedisUtil redisUtil;
+
     //查询数据
     public PageResp<CollectResp> list(CollectReq collectReq) {
         //固定写法
@@ -66,15 +76,22 @@ public class CollectService {
     public void save(CollectReq collectReq) {
         Collect collect = CopyUtil.copy(collectReq, Collect.class);
         PageResp<CollectResp> collectlist = list(collectReq);
-        if (collectlist.getTotal() != 0) {
-            //已经收藏该职业
-            throw new BusinessException(BusinessExceptionCode.USER_COLLECT_EXIST);
-        }else{
-            //更新时间
+        if(redisUtil.validateRepeat("COLLECT_VOC"+collectReq.getStudentId() + collectReq.getPositionId(),3600*24)){
+            redisTemplate.convertAndSend(RedisCode.TOPIC_COLLECT,collectReq);
             collect.setCollecttime(new Date());
             collect.setCollectdistime(new Date());
             collectMapper.insertSelective(collect);
+        }else {
+            /*redisUtil.delete("COLLECT_VOC"+collectReq.getStudentId() + collectReq.getPositionId());*/
+            throw new BusinessException(BusinessExceptionCode.USER_COLLECT_EXIST);
         }
+        /*if (collectlist.getTotal() != 0) {
+            //已经收藏该职业
+
+        }else{
+            //更新时间
+
+        }*/
     }
     //取消收藏
     public void cancelcollect(CollectReq collectReq) {

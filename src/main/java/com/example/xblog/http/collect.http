@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
   "studentId": 2,
-  "positionId": 14
+  "positionId": 1234
 }
 
 ###
