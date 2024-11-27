@@ -39,7 +39,7 @@ public class CollectController {
     @Mylog(value="收藏岗位职业")
     @PostMapping("/save")
     //@RequestBody  定义传过来的参数是实体类
-    public CommonResp save(@Validated @RequestBody CollectReq collectReq) {
+    public CommonResp save(@RequestBody CollectReq collectReq) {
         //返回信息里面定义返回的类型
         CommonResp resp = new CommonResp<>();
         //保存数据

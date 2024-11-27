@@ -1,12 +1,12 @@
 ###
-GET http://localhost:8080/collect/list?studentId=735&positionId=1661
+GET http://localhost:8080/collect/list
 ###
 POST http://localhost:8080/collect/save
 Content-Type: application/json
 
 {
   "studentId": 2,
-  "positionId": 1234
+  "positionId": 123452
 }
 
 ###
