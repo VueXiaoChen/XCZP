@@ -10,6 +10,7 @@ import com.example.xblog.resp.EmployResp;
 import com.example.xblog.service.CollectService;
 import com.example.xblog.service.EmployService;
 import com.example.xblog.util.Mylog;
+import com.example.xblog.util.NoRepeatLock;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,7 @@ public class CollectController {
     @Resource
     private CollectService collectService;
     @Mylog(value="查询收藏信息")
+    @NoRepeatLock(limitType = NoRepeatLock.Type.PARAM,lockTime = 3)
     @GetMapping("/list")
     //@Valid  开启参数检验
     public CommonResp list(@Validated CollectReq collectReq) {
@@ -37,6 +39,7 @@ public class CollectController {
         return resp;
     }
     @Mylog(value="收藏岗位职业")
+    @NoRepeatLock(limitType = NoRepeatLock.Type.PARAM,lockTime = 3)
     @PostMapping("/save")
     //@RequestBody  定义传过来的参数是实体类
     public CommonResp save(@RequestBody CollectReq collectReq) {
@@ -48,6 +51,7 @@ public class CollectController {
         return resp;
     }
     @Mylog(value="取消收藏岗位职业")
+    @NoRepeatLock(limitType = NoRepeatLock.Type.PARAM,lockTime = 3)
     @PostMapping ("/delete")
     //@PathVariable与{blogId}是绑定的
     public CommonResp delete(@Validated @RequestBody CollectReq collectReq) {
@@ -60,7 +64,8 @@ public class CollectController {
         resp.setData("");
         return resp;
     }
-
+    @Mylog(value="查看自己的收藏")
+    @NoRepeatLock(limitType = NoRepeatLock.Type.PARAM,lockTime = 3)
     @PostMapping ("/selfcollect")
     //@PathVariable与{blogId}是绑定的
     public CommonResp findmyselfcollect(@Validated @RequestBody CollectReq collectReq) {

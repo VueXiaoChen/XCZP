@@ -12,6 +12,7 @@ public enum BusinessExceptionCode {
     VOTE_FOCUS("您已关注过"),
     VOTE_PRAISE("您已点赞过"),
     VOTE_COLLECT("您已收藏过"),
+    NO_Repeated_Submission("不要重复提交"),
     ;
 
     private String desc;
