@@ -5,8 +5,10 @@ import router from './router'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import axios from 'axios'
-
 import VueAxios from 'vue-axios'
+import { createPinia } from "pinia"
 
+
+const store  = createPinia()
 const app = createApp(App)
-app.use(router).use(ElementPlus).use(VueAxios,axios).mount('#app')
+app.use(router).use(ElementPlus).use(VueAxios,axios).use(store).mount('#app')

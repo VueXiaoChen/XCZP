@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref, shallowRef, onMounted ,reactive} from 'vue'
-import { Tool } from "@/utils/tool"
+import { Tool } from "../../utils/tool"
 import { ElMessage } from 'element-plus'
-import WebSocket from '@/utils/websocket';
+import WebSocket from '../../utils/WebSocket';
 import request from '../../service'
 let token: any;
 
@@ -31,7 +31,7 @@ const savecollect={
   "studentId": 2,
   "positionId": 121132425,
 }
- const socket = new WebSocket(options);
+const socket = new WebSocket(options);
 
 //web发送消息
 function ceshi(){
@@ -84,7 +84,7 @@ async function GetCollects (){
 }
 onMounted(async () => {
    
-})
+  })
 
 
 // let websocket: any;

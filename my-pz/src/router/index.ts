@@ -5,9 +5,20 @@ const router = createRouter({
     routes: [
         {
             path: "/",
-            name: "home",
-            component: () => import("../views/websocket/websocket.vue")
-        }
+            name: "loading",
+            //component: () => import("../views/websocket/websocket.vue")
+            //component: () => import("../layout/index.vue")
+            component: () => import("../views/HelloWorld.vue")
+            
+        },
+        {
+            path: "/homes",
+            name: "Home",
+            //component: () => import("../views/websocket/websocket.vue")
+            //component: () => import("../layout/index.vue")
+            component: () => import("../components/Home.vue")
+            
+        },
     ]
 })
 
