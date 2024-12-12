@@ -1,0 +1,37 @@
+
+
+###
+POST http://localhost:8080/sysjob/add
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "测试定时任务",
+  "className": "com.example.xblog.job.TaskJob",
+  "cronExpression": "0/4 * * * * ?",
+  "param": 123123123123,
+  "status": 0,
+  "remark": "2",
+  "createBy": 0,
+  "sort": 0
+}
+###
+
+###
+POST http://localhost:8080/sysjob/update
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "测试定时任务",
+  "className": "com.example.xblog.job.TaskJob",
+  "cronExpression": "0/2 * * * * ?",
+  "param": 123,
+  "status": true
+}
+###
+###
+GET http://localhost:8080/sysjob/delete/3
+###
+
+###

@@ -54,8 +54,11 @@
         <table tableName="t_user" domainObjectName="User"/>
         <table tableName="t_log" domainObjectName="OperateLog"/>
         <table tableName="collect" domainObjectName="Collect"/>
-        <table tableName="resume" domainObjectName="Resume"/>-->
-        <table tableName="submit" domainObjectName="Submit"/>
+        <table tableName="resume" domainObjectName="Resume"/>
+
+        <table tableName="submit" domainObjectName="Submit"/>-->
+        <table tableName="xc_dsjob" domainObjectName="SysJob"/>
+
 
         <!--<table tableName="t_exam_paper_question_customer_answer" domainObjectName="ExaPaperQuestionCustomerAnswer"/>-->
 

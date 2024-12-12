@@ -13,6 +13,13 @@ public enum BusinessExceptionCode {
     VOTE_PRAISE("您已点赞过"),
     VOTE_COLLECT("您已收藏过"),
     NO_Repeated_Submission("不要重复提交"),
+
+    ADDJOBERROE("添加定时任务失败"),
+    UPDATEJOBERROE("修改定时任务失败"),
+    PAUSEOBERROE("暂停定时任务失败"),
+    STARTJOBERROE("启动定时任务失败"),
+    EXECUTEJOBERROE("执行定时任务失败"),
+    DELETEJOBERROE("删除定时任务失败"),
     ;
 
     private String desc;
