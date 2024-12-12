@@ -10,7 +10,7 @@ Content-Type: application/json
   "className": "com.example.xblog.job.TaskJob",
   "cronExpression": "0/4 * * * * ?",
   "param": 123123123123,
-  "status": 0,
+  "status": false,
   "remark": "2",
   "createBy": 0,
   "sort": 0
@@ -23,11 +23,11 @@ Content-Type: application/json
 
 {
   "id": 3,
-  "name": "测试定时任务",
+  "name": "测试定时任务1",
   "className": "com.example.xblog.job.TaskJob",
   "cronExpression": "0/2 * * * * ?",
-  "param": 123,
-  "status": true
+  "param": 1234,
+  "status": false
 }
 ###
 ###
