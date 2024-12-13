@@ -47,5 +47,19 @@ public class SysJobController {
         resp.setMessage("定时任务删除成功");
         return resp;
     }
+    @PostMapping ("/comment")
+    public CommonResp startorpause(@RequestBody SysJobReq sysJobReq) {
+        //返回信息里面定义返回的类型
+        CommonResp resp = new CommonResp<>();
+        //暂停或启动
+        Integer sysboolean =  sysJobService.startorpause(sysJobReq.getId(),sysJobReq);
+        if(sysboolean.equals(0)){
+            resp.setMessage("定时任务启动成功");
+        }else{
+            resp.setMessage("定时任务停止成功");
+        }
+
+        return resp;
+    }
 
 }

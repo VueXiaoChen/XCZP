@@ -9,7 +9,7 @@ Content-Type: application/json
   "name": "测试定时任务",
   "className": "com.example.xblog.job.TaskJob",
   "cronExpression": "0/4 * * * * ?",
-  "param": 123123123123,
+  "param": "{studentId:1}",
   "status": false,
   "remark": "2",
   "createBy": 0,
@@ -23,7 +23,7 @@ Content-Type: application/json
 
 {
   "id": 3,
-  "name": "测试定时任务1",
+  "name": "1测试定时任务2221",
   "className": "com.example.xblog.job.TaskJob",
   "cronExpression": "0/2 * * * * ?",
   "param": 1234,
@@ -34,4 +34,16 @@ Content-Type: application/json
 GET http://localhost:8080/sysjob/delete/3
 ###
 
+###
+POST http://localhost:8080/sysjob/comment
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "测试定时任务2222222",
+  "className": "com.example.xblog.job.TaskJob",
+  "cronExpression": "0/2 * * * * ?",
+  "param": 555555555555555,
+  "status": true
+}
 ###
