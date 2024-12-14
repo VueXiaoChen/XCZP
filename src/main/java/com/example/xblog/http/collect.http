@@ -21,32 +21,10 @@ Content-Type: application/json
 ###
 
 
-
 DELETE http://localhost:8080/collect/delete/batch?ids=24,25,26
 
 ###
 
-###
-POST http://localhost:8080/collect/loading
-Content-Type: application/json
-
-{
-  "username": "111",
-  "password": "23333"
-}
-
-###
-
-###
-POST http://localhost:8080/collect/password
-Content-Type: application/json
-
-{
-  "username": "111",
-  "password": "23333"
-}
-
-###
 
 POST http://localhost:8080/collect/selfcollect
 Content-Type: application/json

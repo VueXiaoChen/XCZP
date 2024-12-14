@@ -32,7 +32,7 @@ public class SysJobService {
         SysJob sysJob = CopyUtil.copy(sysJobReq, SysJob.class);
         jobClient.add(jobParamVO);
         sysJob.setCreateTime(new Date());
-        sysJobMapper.insertSelective(sysJob);
+        //sysJobMapper.insertSelective(sysJob);
     }
     //修改定时任务
     public void update(SysJobReq sysJobReq) {
@@ -40,13 +40,13 @@ public class SysJobService {
         SysJob sysJob = CopyUtil.copy(sysJobReq, SysJob.class);
         if(!ObjectUtils.isEmpty(sysJobReq.getId())){
             jobClient.update(jobParamVO);
-            sysJobMapper.updateByPrimaryKeySelective(sysJob);
+            //sysJobMapper.updateByPrimaryKeySelective(sysJob);
         }
     }
     //删除定时任务
     public void delete(long id) {
         jobClient.delete(id);
-        sysJobMapper.deleteByPrimaryKey(id);
+        //sysJobMapper.deleteByPrimaryKey(id);
     }
     //启动暂停定时任务
     public Integer startorpause(long id,SysJobReq sysJobReq){
@@ -54,11 +54,11 @@ public class SysJobService {
         SysJob sysJob = CopyUtil.copy(sysJobReq, SysJob.class);
         if(sysJobReq.getStatus()==false){
             jobClient.start(String.valueOf(sysJobReq.getId()),jobParamVO);
-            sysJobMapper.updateByPrimaryKeySelective(sysJob);
+            //sysJobMapper.updateByPrimaryKeySelective(sysJob);
             return 0;
         }else{
             jobClient.stop(String.valueOf(sysJobReq.getId()));
-            sysJobMapper.updateByPrimaryKeySelective(sysJob);
+            //sysJobMapper.updateByPrimaryKeySelective(sysJob);
             return 1;
         }
     }

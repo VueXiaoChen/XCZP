@@ -9,7 +9,7 @@ Content-Type: application/json
   "name": "测试定时任务",
   "className": "com.example.xblog.job.TaskJob",
   "cronExpression": "0/4 * * * * ?",
-  "param": "{studentId:1}",
+  "param": "{userid:1}",
   "status": false,
   "remark": "2",
   "createBy": 0,
