@@ -45,7 +45,7 @@ public class WebSocketServer {
         LOG.info("用户"+token+"加入！当前在线人数为" + getOnlineCount());
         try {
             WebMessageReq webMessageReq = new WebMessageReq();
-            webMessageReq.setType("1");
+            webMessageReq.setType("4");
             webMessageReq.setComment("用户"+token+"连接成功");
             sendMessage(JSON.toJSONString(webMessageReq));
         } catch (IOException e) {

@@ -7,7 +7,7 @@ Content-Type: application/json
 {
   "type": "1",
   "comment": "登陆成功",
-  "userid": "userid123"
+  "userid": "1"
 }
 
 ###
@@ -17,7 +17,7 @@ POST http://localhost:8080/webmessage/send
 Content-Type: application/json
 
 {
-  "type": "2",
+  "type": "3",
   "comment": "44443333",
   "userid": "1"
 }

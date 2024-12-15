@@ -53,10 +53,8 @@ public class RedisReceiver{
         //将数组转换成对象
         WebMessageReq m = JSON.parseObject(JSON.toJSONString(arr.get(1)),WebMessageReq.class);
         //WebMessageReq webMessageReq =new WebMessageReq();
-        m.setType("1");
-        m.setComment(m.getComment());
         //webSock发送消息
-        webSocsService.sendtoUser(JSON.toJSONString(m),"",m.getUserid());
+        webSocsService.sendtoUser(JSON.toJSONString(m),"","userid"+m.getUserid());
         LOG.info("消费关注数据:[{}]", m);
     }
     public void collect(String message,String channel) throws IOException {
