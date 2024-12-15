@@ -56,8 +56,10 @@
         <table tableName="collect" domainObjectName="Collect"/>
         <table tableName="resume" domainObjectName="Resume"/>
 
-        <table tableName="submit" domainObjectName="Submit"/>-->
-        <table tableName="xc_dsjob" domainObjectName="SysJob"/>
+        <table tableName="submit" domainObjectName="Submit"/>
+        <table tableName="xc_dsjob" domainObjectName="SysJob"/>-->
+        <table tableName="t_videos" domainObjectName="VideoAddress"/>
+
 
 
         <!--<table tableName="t_exam_paper_question_customer_answer" domainObjectName="ExaPaperQuestionCustomerAnswer"/>-->

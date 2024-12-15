@@ -1,0 +1,22 @@
+###
+GET http://localhost:8080/videoAddress/list?videoaddress=magnet:?xt=urn:btih:B854A2C4A4BBFCB26EAF0C4DC453D74A91997D49
+
+###
+
+###
+POST http://localhost:8080/videoAddress/save
+Content-Type: application/json
+
+{
+  "videotag": "昌吉22222666",
+  "videosource": "比斯33333333",
+  "videoaddress": "www.lilil111111111",
+  "videotype": "口角"
+}
+
+###
+
+###
+GET http://localhost:8080/videoAddress/delete/4
+
+###

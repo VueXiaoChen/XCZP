@@ -114,7 +114,8 @@
       #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{createtime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.xblog.domain.User">
+  <insert id="insertSelective" parameterType="com.example.xblog.domain.User" useGeneratedKeys="true"
+          keyColumn="id" keyProperty="id">
     insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
