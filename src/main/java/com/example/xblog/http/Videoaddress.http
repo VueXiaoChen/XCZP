@@ -1,5 +1,5 @@
 ###
-GET http://localhost:8080/videoAddress/list?videoaddress=magnet:?xt=urn:btih:B854A2C4A4BBFCB26EAF0C4DC453D74A91997D49
+GET http://localhost:8080/videoAddress/list?videoaddress=316313ADB38C1CDE0AEFB906E16BE10F7EE0D37C
 
 ###
 
@@ -8,10 +8,19 @@ POST http://localhost:8080/videoAddress/save
 Content-Type: application/json
 
 {
-  "videotag": "昌吉22222666",
-  "videosource": "比斯33333333",
-  "videoaddress": "www.lilil111111111",
-  "videotype": "口角"
+  "videoid": "486",
+  "videotag": "2023年【重磅强推】模特儿身材 书香气质的女神，被豺狼似的男友狠操尖叫惨叫连连，叫的越惨，操得越狠",
+  "videosource": "比斯",
+  "updateTime": "2023-10-20 15:24:02",
+  "createTime": "2023-10-20 15:24:02",
+  "videotype": "其他",
+  "videostate": "未存盘",
+  "folder": "4.24.10",
+  "collectiontime": "2023-10-20",
+  "filesize": "0",
+  "videoimg": "暂无图片",
+  "videoaddress": "magnet:?xt=urn:btih:316313ADB38C1CDE0AEFB906E16BE10F7EE0D37C",
+  "videofile": ""
 }
 
 ###
