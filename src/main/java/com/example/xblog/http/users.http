@@ -1,0 +1,52 @@
+###
+GET http://localhost:8080/users/list
+###
+POST http://localhost:8080/users/save
+Content-Type: application/json
+
+{
+  "userId": "1",
+  "userIp": "127.0.0.2",
+  "userName": "123456",
+  "userPassword": "12345",
+  "userEmail": "444",
+  "userProfilePhoto": "123",
+  "userBirthday": "2025-03-20 00:00:00",
+  "userAge": 22,
+  "userTelephoneNumber": 456456456,
+  "userNickname": "545646546"
+}
+
+###
+###
+DELETE http://localhost:8080/user/delete/21
+
+###
+
+
+
+DELETE http://localhost:8080/user/delete/batch?ids=24,25,26
+
+###
+
+###
+POST http://localhost:8080/users/loading
+Content-Type: application/json
+
+{
+  "userName": "123456",
+  "userPassword": "12345"
+}
+
+###
+
+###
+POST http://localhost:8080/users/password
+Content-Type: application/json
+
+{
+  "userName": "123456",
+  "userPassword": "13"
+}
+
+###

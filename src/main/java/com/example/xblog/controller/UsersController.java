@@ -1,12 +1,13 @@
 package com.example.xblog.controller;
 
-import com.example.xblog.req.*;
+import com.example.xblog.req.PageResp;
+import com.example.xblog.req.UsersLoadingReq;
+import com.example.xblog.req.UsersReq;
+import com.example.xblog.req.UsersSaveReq;
 import com.example.xblog.resp.CommonResp;
-import com.example.xblog.resp.EmployResp;
-import com.example.xblog.resp.UserLoadingResp;
-import com.example.xblog.resp.UserResp;
-import com.example.xblog.service.EmployService;
-import com.example.xblog.service.UserService;
+import com.example.xblog.resp.UsersLoadingResp;
+import com.example.xblog.resp.UsersResp;
+import com.example.xblog.service.UsersService;
 import com.example.xblog.util.Mylog;
 import com.example.xblog.util.SnowFlake;
 import org.springframework.util.ObjectUtils;
@@ -14,24 +15,23 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/users")
+public class UsersController {
     @Resource
-    private UserService userService;
+    private UsersService usersService;
     @Resource
     private SnowFlake snowFlake;
 
     @Mylog(value="查询用户信息")
     @GetMapping("/list")
     //@Valid  开启参数检验
-    public CommonResp list(@Validated UserReq userReq) {
+    public CommonResp list(@Validated UsersReq usersReq) {
         //返回信息里面定义返回的类型
-        CommonResp<PageResp<UserResp>> resp = new CommonResp<>();
+        CommonResp<PageResp<UsersResp>> resp = new CommonResp<>();
         //接收数据库返回的数据
-        PageResp<UserResp> data = userService.list(userReq);
+        PageResp<UsersResp> data = usersService.list(usersReq);
         //将信息添加到返回信息里
         resp.setMessage("获取成功");
         //将信息添加到返回信息里
@@ -41,13 +41,13 @@ public class UserController {
     @Mylog(value="增加或修改用户信息")
     @PostMapping("/save")
     //@RequestBody  定义传过来的参数是实体类
-    public CommonResp save(@Validated @RequestBody UserSaveReq userSaveReq) {
+    public CommonResp save(@Validated @RequestBody UsersSaveReq usersSaveReq) {
         //返回信息里面定义返回的类型
         CommonResp resp = new CommonResp<>();
         //保存数据
-        userService.save(userSaveReq);
+        usersService.save(usersSaveReq);
         //将信息添加到返回信息里
-        if (ObjectUtils.isEmpty(userSaveReq.getId())) {
+        if (ObjectUtils.isEmpty(usersSaveReq.getUserId())) {
             resp.setMessage("保存成功");
         } else {
             resp.setMessage("修改成功");
@@ -59,11 +59,11 @@ public class UserController {
     @Mylog(value="删除用户信息")
     @DeleteMapping ("/delete/{id}")
     //@PathVariable与{blogId}是绑定的
-    public CommonResp delete(@PathVariable Integer id) {
+    public CommonResp delete(@PathVariable long id) {
         //返回信息里面定义返回的类型
         CommonResp resp = new CommonResp<>();
         //删除数据
-        userService.delete(id);
+        usersService.delete(id);
         //将信息添加到返回信息里
         resp.setMessage("删除成功");
         resp.setData("");
@@ -72,11 +72,11 @@ public class UserController {
     @Mylog(value="用户登录")
     @PostMapping("/loading")
     //@RequestBody  定义传过来的参数是实体类
-    public CommonResp loading(@RequestBody UserLoadingReq userLoadingReq) {
+    public CommonResp loading(@RequestBody UsersLoadingReq usersLoadingReq) {
         //返回信息里面定义返回的类型
-        CommonResp<UserLoadingResp> resp = new CommonResp<>();
+        CommonResp<UsersLoadingResp> resp = new CommonResp<>();
         //保存数据
-        UserLoadingResp userLoadingResp = userService.loading(userLoadingReq);
+        UsersLoadingResp userLoadingResp = usersService.loading(usersLoadingReq);
         //雪花算法生成token
         Long token = snowFlake.nextId();
         //LOG.info("生成单点登录的token:{},并放入redis中",token);
@@ -93,11 +93,11 @@ public class UserController {
     @Mylog(value="修改密码")
     @PostMapping ("/password")
     //@PathVariable与{blogId}是绑定的
-    public CommonResp password(@RequestBody UserLoadingReq userLoadingReq) {
+    public CommonResp password(@RequestBody UsersLoadingReq usersLoadingReq) {
         //返回信息里面定义返回的类型
         CommonResp resp = new CommonResp<>();
         //删除数据
-        userService.updatepassword(userLoadingReq);
+        usersService.updatepassword(usersLoadingReq);
         //将信息添加到返回信息里
         resp.setMessage("修改成功");
         resp.setData("");

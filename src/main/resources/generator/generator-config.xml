@@ -58,7 +58,14 @@
 
         <table tableName="submit" domainObjectName="Submit"/>
         <table tableName="xc_dsjob" domainObjectName="SysJob"/>-->
-        <table tableName="t_videos" domainObjectName="VideoAddress"/>
+        <table tableName="zj_articles" domainObjectName="Articles"/>
+        <table tableName="zj_comments" domainObjectName="Comments"/>
+        <table tableName="zj_labels" domainObjectName="Labels"/>
+        <table tableName="zj_set_artitle_label" domainObjectName="ArticleLabels"/>
+        <table tableName="zj_set_artitle_sort" domainObjectName="ArtitleSort"/>
+        <table tableName="zj_sorts" domainObjectName="Sorts"/>
+        <table tableName="zj_user_friends" domainObjectName="UserFriends"/>
+        <table tableName="zj_users" domainObjectName="Users"/>
 
 
 

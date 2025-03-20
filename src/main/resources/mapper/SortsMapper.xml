@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.xblog.mapper.SortsMapper">
+  <resultMap id="BaseResultMap" type="com.example.xblog.domain.Sorts">
+    <id column="sort_id" jdbcType="BIGINT" property="sortId" />
+    <result column="sort_name" jdbcType="VARCHAR" property="sortName" />
+    <result column="sort_alias" jdbcType="VARCHAR" property="sortAlias" />
+    <result column="parent_sort_id" jdbcType="BIGINT" property="parentSortId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.xblog.domain.Sorts">
+    <result column="sort_description" jdbcType="LONGVARCHAR" property="sortDescription" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    sort_id, sort_name, sort_alias, parent_sort_id
+  </sql>
+  <sql id="Blob_Column_List">
+    sort_description
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.xblog.domain.SortsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from zj_sorts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.example.xblog.domain.SortsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zj_sorts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from zj_sorts
+    where sort_id = #{sortId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from zj_sorts
+    where sort_id = #{sortId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.xblog.domain.SortsExample">
+    delete from zj_sorts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.xblog.domain.Sorts">
+    insert into zj_sorts (sort_id, sort_name, sort_alias, 
+      parent_sort_id, sort_description)
+    values (#{sortId,jdbcType=BIGINT}, #{sortName,jdbcType=VARCHAR}, #{sortAlias,jdbcType=VARCHAR}, 
+      #{parentSortId,jdbcType=BIGINT}, #{sortDescription,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xblog.domain.Sorts">
+    insert into zj_sorts
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sortId != null">
+        sort_id,
+      </if>
+      <if test="sortName != null">
+        sort_name,
+      </if>
+      <if test="sortAlias != null">
+        sort_alias,
+      </if>
+      <if test="parentSortId != null">
+        parent_sort_id,
+      </if>
+      <if test="sortDescription != null">
+        sort_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sortId != null">
+        #{sortId,jdbcType=BIGINT},
+      </if>
+      <if test="sortName != null">
+        #{sortName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortAlias != null">
+        #{sortAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="parentSortId != null">
+        #{parentSortId,jdbcType=BIGINT},
+      </if>
+      <if test="sortDescription != null">
+        #{sortDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xblog.domain.SortsExample" resultType="java.lang.Long">
+    select count(*) from zj_sorts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update zj_sorts
+    <set>
+      <if test="row.sortId != null">
+        sort_id = #{row.sortId,jdbcType=BIGINT},
+      </if>
+      <if test="row.sortName != null">
+        sort_name = #{row.sortName,jdbcType=VARCHAR},
+      </if>
+      <if test="row.sortAlias != null">
+        sort_alias = #{row.sortAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="row.parentSortId != null">
+        parent_sort_id = #{row.parentSortId,jdbcType=BIGINT},
+      </if>
+      <if test="row.sortDescription != null">
+        sort_description = #{row.sortDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update zj_sorts
+    set sort_id = #{row.sortId,jdbcType=BIGINT},
+      sort_name = #{row.sortName,jdbcType=VARCHAR},
+      sort_alias = #{row.sortAlias,jdbcType=VARCHAR},
+      parent_sort_id = #{row.parentSortId,jdbcType=BIGINT},
+      sort_description = #{row.sortDescription,jdbcType=LONGVARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update zj_sorts
+    set sort_id = #{row.sortId,jdbcType=BIGINT},
+      sort_name = #{row.sortName,jdbcType=VARCHAR},
+      sort_alias = #{row.sortAlias,jdbcType=VARCHAR},
+      parent_sort_id = #{row.parentSortId,jdbcType=BIGINT}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xblog.domain.Sorts">
+    update zj_sorts
+    <set>
+      <if test="sortName != null">
+        sort_name = #{sortName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortAlias != null">
+        sort_alias = #{sortAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="parentSortId != null">
+        parent_sort_id = #{parentSortId,jdbcType=BIGINT},
+      </if>
+      <if test="sortDescription != null">
+        sort_description = #{sortDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where sort_id = #{sortId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.xblog.domain.Sorts">
+    update zj_sorts
+    set sort_name = #{sortName,jdbcType=VARCHAR},
+      sort_alias = #{sortAlias,jdbcType=VARCHAR},
+      parent_sort_id = #{parentSortId,jdbcType=BIGINT},
+      sort_description = #{sortDescription,jdbcType=LONGVARCHAR}
+    where sort_id = #{sortId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xblog.domain.Sorts">
+    update zj_sorts
+    set sort_name = #{sortName,jdbcType=VARCHAR},
+      sort_alias = #{sortAlias,jdbcType=VARCHAR},
+      parent_sort_id = #{parentSortId,jdbcType=BIGINT}
+    where sort_id = #{sortId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -4,7 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 
 
 import com.example.xblog.resp.CommonResp;
-import com.example.xblog.resp.UserLoadingResp;
+import com.example.xblog.resp.UsersLoadingResp;
+import com.example.xblog.resp.UsersLoadingResp;
 import com.example.xblog.util.LoginUserContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,8 +33,8 @@ public class ActionInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        UserLoadingResp userLoadingResp= LoginUserContext.getUser();
-        if ("admin".equals(userLoadingResp.getUsername())) {
+        UsersLoadingResp usersLoadingResp= LoginUserContext.getUser();
+        if ("admin".equals(usersLoadingResp.getUsername())) {
             // admin用户不拦截
             return true;
         }

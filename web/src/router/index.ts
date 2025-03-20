@@ -57,6 +57,35 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: "/other",
+    component: Layouts,
+    name: "shudu",
+    meta: {
+      title: "其他管理",
+      elIcon: "Grid"
+    },
+    children: [
+      {
+        path: "other/shudu",
+        component: () => import("@/views/login/shudu.vue"),
+        name: "shudu",
+        meta: {
+          title: "数独",
+          svgIcon: "link"
+        }
+      },
+      {
+        path: "other/ceshi",
+        component: () => import("@/views/login/shudu.vue"),
+        name: "ceshi",
+        meta: {
+          title: "测试",
+          svgIcon: "link"
+        }
+      },
+    ]
+  },
+  {
     path: "/blog",
     component: Layouts,
     name: "Blog",

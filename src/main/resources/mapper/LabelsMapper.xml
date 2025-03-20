@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.xblog.mapper.LabelsMapper">
+  <resultMap id="BaseResultMap" type="com.example.xblog.domain.Labels">
+    <id column="label_id" jdbcType="BIGINT" property="labelId" />
+    <result column="label_name" jdbcType="VARCHAR" property="labelName" />
+    <result column="label_alias" jdbcType="VARCHAR" property="labelAlias" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.xblog.domain.Labels">
+    <result column="label_description" jdbcType="LONGVARCHAR" property="labelDescription" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    label_id, label_name, label_alias
+  </sql>
+  <sql id="Blob_Column_List">
+    label_description
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.xblog.domain.LabelsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from zj_labels
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.example.xblog.domain.LabelsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zj_labels
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from zj_labels
+    where label_id = #{labelId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from zj_labels
+    where label_id = #{labelId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.xblog.domain.LabelsExample">
+    delete from zj_labels
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.xblog.domain.Labels">
+    insert into zj_labels (label_id, label_name, label_alias, 
+      label_description)
+    values (#{labelId,jdbcType=BIGINT}, #{labelName,jdbcType=VARCHAR}, #{labelAlias,jdbcType=VARCHAR}, 
+      #{labelDescription,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xblog.domain.Labels">
+    insert into zj_labels
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="labelId != null">
+        label_id,
+      </if>
+      <if test="labelName != null">
+        label_name,
+      </if>
+      <if test="labelAlias != null">
+        label_alias,
+      </if>
+      <if test="labelDescription != null">
+        label_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="labelId != null">
+        #{labelId,jdbcType=BIGINT},
+      </if>
+      <if test="labelName != null">
+        #{labelName,jdbcType=VARCHAR},
+      </if>
+      <if test="labelAlias != null">
+        #{labelAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="labelDescription != null">
+        #{labelDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.xblog.domain.LabelsExample" resultType="java.lang.Long">
+    select count(*) from zj_labels
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update zj_labels
+    <set>
+      <if test="row.labelId != null">
+        label_id = #{row.labelId,jdbcType=BIGINT},
+      </if>
+      <if test="row.labelName != null">
+        label_name = #{row.labelName,jdbcType=VARCHAR},
+      </if>
+      <if test="row.labelAlias != null">
+        label_alias = #{row.labelAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="row.labelDescription != null">
+        label_description = #{row.labelDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update zj_labels
+    set label_id = #{row.labelId,jdbcType=BIGINT},
+      label_name = #{row.labelName,jdbcType=VARCHAR},
+      label_alias = #{row.labelAlias,jdbcType=VARCHAR},
+      label_description = #{row.labelDescription,jdbcType=LONGVARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update zj_labels
+    set label_id = #{row.labelId,jdbcType=BIGINT},
+      label_name = #{row.labelName,jdbcType=VARCHAR},
+      label_alias = #{row.labelAlias,jdbcType=VARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xblog.domain.Labels">
+    update zj_labels
+    <set>
+      <if test="labelName != null">
+        label_name = #{labelName,jdbcType=VARCHAR},
+      </if>
+      <if test="labelAlias != null">
+        label_alias = #{labelAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="labelDescription != null">
+        label_description = #{labelDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where label_id = #{labelId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.xblog.domain.Labels">
+    update zj_labels
+    set label_name = #{labelName,jdbcType=VARCHAR},
+      label_alias = #{labelAlias,jdbcType=VARCHAR},
+      label_description = #{labelDescription,jdbcType=LONGVARCHAR}
+    where label_id = #{labelId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xblog.domain.Labels">
+    update zj_labels
+    set label_name = #{labelName,jdbcType=VARCHAR},
+      label_alias = #{labelAlias,jdbcType=VARCHAR}
+    where label_id = #{labelId,jdbcType=BIGINT}
+  </update>
+</mapper>

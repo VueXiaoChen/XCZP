@@ -3,10 +3,10 @@ package com.example.xblog.resp;
 import java.io.Serializable;
 
 //序列化，使用redis之后需要序列化
-public class UserLoadingResp implements Serializable {
-    private Long userid;
+public class UsersLoadingResp implements Serializable {
+    private Long userId;
 
-    private String username;
+    private String userName;
 
     private Integer code = 0;
     private String token;
@@ -27,25 +27,25 @@ public class UserLoadingResp implements Serializable {
     }
 
     public Long getUserid() {
-        return userid;
+        return userId;
     }
 
     public void setUserid(Long userid) {
-        this.userid = userid;
+        this.userId = userid;
     }
 
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.userName = username;
     }
     @Override
     public String toString() {
         return "UserLoadingResp{" +
-                "userid=" + userid +
-                ", username='" + username + '\'' +
+                "userid=" + userId +
+                ", username='" + userName + '\'' +
                 ", code=" + code +
                 ", token='" + token + '\'' +
                 '}';
