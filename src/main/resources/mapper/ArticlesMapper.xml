@@ -8,6 +8,7 @@
     <result column="article_comment_count" jdbcType="BIGINT" property="articleCommentCount" />
     <result column="article_date" jdbcType="TIMESTAMP" property="articleDate" />
     <result column="article_like_count" jdbcType="BIGINT" property="articleLikeCount" />
+    <result column="article_updatedate" jdbcType="TIMESTAMP" property="articleUpdatedate" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.xblog.domain.Articles">
     <result column="article_title" jdbcType="LONGVARCHAR" property="articleTitle" />
@@ -72,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    article_id, user_id, article_views, article_comment_count, article_date, article_like_count
+    article_id, user_id, article_views, article_comment_count, article_date, article_like_count, 
+    article_updatedate
   </sql>
   <sql id="Blob_Column_List">
     article_title, article_content
@@ -128,12 +130,15 @@
   <insert id="insert" parameterType="com.example.xblog.domain.Articles">
     insert into zj_articles (article_id, user_id, article_views, 
       article_comment_count, article_date, article_like_count, 
-      article_title, article_content)
+      article_updatedate, article_title, 
+      article_content)
     values (#{articleId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{articleViews,jdbcType=BIGINT}, 
       #{articleCommentCount,jdbcType=BIGINT}, #{articleDate,jdbcType=TIMESTAMP}, #{articleLikeCount,jdbcType=BIGINT}, 
-      #{articleTitle,jdbcType=LONGVARCHAR}, #{articleContent,jdbcType=LONGVARCHAR})
+      #{articleUpdatedate,jdbcType=TIMESTAMP}, #{articleTitle,jdbcType=LONGVARCHAR}, 
+      #{articleContent,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.xblog.domain.Articles">
+  <insert id="insertSelective" parameterType="com.example.xblog.domain.Articles" useGeneratedKeys="true"
+          keyColumn="articleId" keyProperty="articleId">
     insert into zj_articles
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="articleId != null">
@@ -153,6 +158,9 @@
       </if>
       <if test="articleLikeCount != null">
         article_like_count,
+      </if>
+      <if test="articleUpdatedate != null">
+        article_updatedate,
       </if>
       <if test="articleTitle != null">
         article_title,
@@ -179,6 +187,9 @@
       </if>
       <if test="articleLikeCount != null">
         #{articleLikeCount,jdbcType=BIGINT},
+      </if>
+      <if test="articleUpdatedate != null">
+        #{articleUpdatedate,jdbcType=TIMESTAMP},
       </if>
       <if test="articleTitle != null">
         #{articleTitle,jdbcType=LONGVARCHAR},
@@ -215,6 +226,9 @@
       <if test="row.articleLikeCount != null">
         article_like_count = #{row.articleLikeCount,jdbcType=BIGINT},
       </if>
+      <if test="row.articleUpdatedate != null">
+        article_updatedate = #{row.articleUpdatedate,jdbcType=TIMESTAMP},
+      </if>
       <if test="row.articleTitle != null">
         article_title = #{row.articleTitle,jdbcType=LONGVARCHAR},
       </if>
@@ -234,6 +248,7 @@
       article_comment_count = #{row.articleCommentCount,jdbcType=BIGINT},
       article_date = #{row.articleDate,jdbcType=TIMESTAMP},
       article_like_count = #{row.articleLikeCount,jdbcType=BIGINT},
+      article_updatedate = #{row.articleUpdatedate,jdbcType=TIMESTAMP},
       article_title = #{row.articleTitle,jdbcType=LONGVARCHAR},
       article_content = #{row.articleContent,jdbcType=LONGVARCHAR}
     <if test="example != null">
@@ -247,7 +262,8 @@
       article_views = #{row.articleViews,jdbcType=BIGINT},
       article_comment_count = #{row.articleCommentCount,jdbcType=BIGINT},
       article_date = #{row.articleDate,jdbcType=TIMESTAMP},
-      article_like_count = #{row.articleLikeCount,jdbcType=BIGINT}
+      article_like_count = #{row.articleLikeCount,jdbcType=BIGINT},
+      article_updatedate = #{row.articleUpdatedate,jdbcType=TIMESTAMP}
     <if test="example != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -270,6 +286,9 @@
       <if test="articleLikeCount != null">
         article_like_count = #{articleLikeCount,jdbcType=BIGINT},
       </if>
+      <if test="articleUpdatedate != null">
+        article_updatedate = #{articleUpdatedate,jdbcType=TIMESTAMP},
+      </if>
       <if test="articleTitle != null">
         article_title = #{articleTitle,jdbcType=LONGVARCHAR},
       </if>
@@ -286,6 +305,7 @@
       article_comment_count = #{articleCommentCount,jdbcType=BIGINT},
       article_date = #{articleDate,jdbcType=TIMESTAMP},
       article_like_count = #{articleLikeCount,jdbcType=BIGINT},
+      article_updatedate = #{articleUpdatedate,jdbcType=TIMESTAMP},
       article_title = #{articleTitle,jdbcType=LONGVARCHAR},
       article_content = #{articleContent,jdbcType=LONGVARCHAR}
     where article_id = #{articleId,jdbcType=BIGINT}
@@ -296,7 +316,8 @@
       article_views = #{articleViews,jdbcType=BIGINT},
       article_comment_count = #{articleCommentCount,jdbcType=BIGINT},
       article_date = #{articleDate,jdbcType=TIMESTAMP},
-      article_like_count = #{articleLikeCount,jdbcType=BIGINT}
+      article_like_count = #{articleLikeCount,jdbcType=BIGINT},
+      article_updatedate = #{articleUpdatedate,jdbcType=TIMESTAMP}
     where article_id = #{articleId,jdbcType=BIGINT}
   </update>
 </mapper>

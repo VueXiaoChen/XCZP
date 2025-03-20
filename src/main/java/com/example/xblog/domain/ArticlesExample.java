@@ -464,6 +464,71 @@ public class ArticlesExample {
             addCriterion("article_like_count not between", value1, value2, "articleLikeCount");
             return (Criteria) this;
         }
+
+        public Criteria andArticleUpdatedateIsNull() {
+            addCriterion("article_updatedate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleUpdatedateIsNotNull() {
+            addCriterion("article_updatedate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleUpdatedateEqualTo(Date value) {
+            addCriterion("article_updatedate =", value, "articleUpdatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleUpdatedateNotEqualTo(Date value) {
+            addCriterion("article_updatedate <>", value, "articleUpdatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleUpdatedateGreaterThan(Date value) {
+            addCriterion("article_updatedate >", value, "articleUpdatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleUpdatedateGreaterThanOrEqualTo(Date value) {
+            addCriterion("article_updatedate >=", value, "articleUpdatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleUpdatedateLessThan(Date value) {
+            addCriterion("article_updatedate <", value, "articleUpdatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleUpdatedateLessThanOrEqualTo(Date value) {
+            addCriterion("article_updatedate <=", value, "articleUpdatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleUpdatedateIn(List<Date> values) {
+            addCriterion("article_updatedate in", values, "articleUpdatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleUpdatedateNotIn(List<Date> values) {
+            addCriterion("article_updatedate not in", values, "articleUpdatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleUpdatedateBetween(Date value1, Date value2) {
+            addCriterion("article_updatedate between", value1, value2, "articleUpdatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleUpdatedateNotBetween(Date value1, Date value2) {
+            addCriterion("article_updatedate not between", value1, value2, "articleUpdatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleTitleLike(String value) {
+            addCriterion("article_title like", value, "articleTitle");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

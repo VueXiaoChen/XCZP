@@ -1,8 +1,11 @@
-package com.example.xblog.domain;
+package com.example.xblog.resp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class Articles {
+public class ArticlesResp {
     private Long articleId;
 
     private Long userId;
@@ -10,11 +13,13 @@ public class Articles {
     private Long articleViews;
 
     private Long articleCommentCount;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date articleDate;
 
     private Long articleLikeCount;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date articleUpdatedate;
 
     private String articleTitle;
