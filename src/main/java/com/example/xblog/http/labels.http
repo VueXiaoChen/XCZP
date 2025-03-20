@@ -1,0 +1,18 @@
+###
+GET http://localhost:8080/labels/list
+
+###
+POST http://localhost:8080/labels/save
+Content-Type: application/json
+
+{
+  "labelName": "Jerry Ruiz1111111111",
+  "labelAlias": "FLu4t2ZGwV",
+  "labelDescription": "A man is n"
+}
+
+###
+###
+GET http://localhost:8080/labels/delete/6
+
+###

@@ -132,7 +132,8 @@
       #{commentLikeCount,jdbcType=BIGINT}, #{commentDate,jdbcType=TIMESTAMP}, #{parentCommentId,jdbcType=BIGINT}, 
       #{commentContent,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.xblog.domain.Comments">
+  <insert id="insertSelective" parameterType="com.example.xblog.domain.Comments" useGeneratedKeys="true"
+          keyColumn="commentId" keyProperty="commentId">
     insert into zj_comments
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="commentId != null">

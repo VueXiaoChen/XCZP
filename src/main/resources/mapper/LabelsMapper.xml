@@ -127,7 +127,8 @@
     values (#{labelId,jdbcType=BIGINT}, #{labelName,jdbcType=VARCHAR}, #{labelAlias,jdbcType=VARCHAR}, 
       #{labelDescription,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.xblog.domain.Labels">
+  <insert id="insertSelective" parameterType="com.example.xblog.domain.Labels" useGeneratedKeys="true"
+          keyColumn="labelId" keyProperty="labelId">
     insert into zj_labels
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="labelId != null">

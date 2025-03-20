@@ -1,0 +1,21 @@
+###
+GET http://localhost:8080/comments/list?articleId=304&userId=251
+
+###
+POST http://localhost:8080/comments/save
+Content-Type: application/json
+
+{
+  "userId": "25112",
+  "articleId": "3041",
+  "commentLikeCount": "4321",
+  "commentDate": "2004-06-04 14:02:01",
+  "parentCommentId": "4461",
+  "commentContent": "All j1o"
+}
+
+###
+###
+GET http://localhost:8080/comments/delete/20
+
+###

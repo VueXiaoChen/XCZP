@@ -59,7 +59,6 @@ public class UsersService {
         if (!ObjectUtils.isEmpty(usersReq.getUserName())) {
             criteria.andUserNameLike("%" + usersReq.getUserName() + "%");
         }
-        
         if (!ObjectUtils.isEmpty(usersReq.getUserRegistrationTime())) {
             criteria.andUserRegistrationTimeEqualTo(usersReq.getUserRegistrationTime());
         }

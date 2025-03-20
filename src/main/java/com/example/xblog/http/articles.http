@@ -7,9 +7,9 @@ Content-Type: application/json
 
 {
 
-  "articleId": "1",
-  "userId": "1",
-  "articleViews": "4731",
+  "articleId": 1,
+  "userId": 2,
+  "articleViews": "47314111111",
   "articleCommentCount": "90",
   "articleDate": "2009-12-18 10:30:59",
   "articleLikeCount": "261",
