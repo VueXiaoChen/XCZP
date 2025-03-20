@@ -1,0 +1,17 @@
+###
+GET http://localhost:8080/articleLabels/list
+
+###
+POST http://localhost:8080/articleLabels/save
+Content-Type: application/json
+
+{
+  "articleId": "7",
+  "labelId": "78"
+}
+
+###
+###
+GET http://localhost:8080/articleLabels/delete/1
+
+###
