@@ -128,7 +128,8 @@
     values (#{sortId,jdbcType=BIGINT}, #{sortName,jdbcType=VARCHAR}, #{sortAlias,jdbcType=VARCHAR}, 
       #{parentSortId,jdbcType=BIGINT}, #{sortDescription,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.xblog.domain.Sorts">
+  <insert id="insertSelective" parameterType="com.example.xblog.domain.Sorts" useGeneratedKeys="true"
+          keyColumn="sortId" keyProperty="sortId">
     insert into zj_sorts
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="sortId != null">

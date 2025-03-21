@@ -100,7 +100,8 @@
     insert into zj_set_artitle_label (article_id, label_id)
     values (#{articleId,jdbcType=BIGINT}, #{labelId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.xblog.domain.ArticleLabels">
+  <insert id="insertSelective" parameterType="com.example.xblog.domain.ArticleLabels" useGeneratedKeys="true"
+          keyColumn="articleId" keyProperty="articleId">
     insert into zj_set_artitle_label
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="articleId != null">

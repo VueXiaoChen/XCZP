@@ -95,7 +95,8 @@
     insert into zj_set_artitle_sort (article_id, sort_id)
     values (#{articleId,jdbcType=BIGINT}, #{sortId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.xblog.domain.ArtitleSort">
+  <insert id="insertSelective" parameterType="com.example.xblog.domain.ArtitleSort" useGeneratedKeys="true"
+          keyColumn="articleId" keyProperty="articleId">
     insert into zj_set_artitle_sort
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="articleId != null">

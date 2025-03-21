@@ -1,0 +1,24 @@
+###
+GET http://localhost:8080/artitlesort/list
+
+###
+POST http://localhost:8080/artitlesort/save
+Content-Type: application/json
+
+{
+
+  "articleId": "16",
+  "sortId": "14"
+}
+
+###
+###
+POST http://localhost:8080/artitlesort/delete/
+Content-Type: application/json
+
+{
+
+  "articleId": "14",
+  "sortId": "14"
+}
+###
